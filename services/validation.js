@@ -21,7 +21,7 @@ const validate = (schema, obj, next) => {
   if (error) {
     return next({
       status: 400,
-      message: 'Bad request of contact',
+      message: 'Bad request',
     });
   }
   next();

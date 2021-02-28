@@ -89,7 +89,7 @@ router.patch('/:contactId', validate.updateContact, async (req, res, next) => {
       return res.status(400).json({
         status: 'Error',
         code: 400,
-        message: 'Bad request of contact',
+        message: 'Bad request',
       });
     }
     const contact = await Contacts.updateContact(
