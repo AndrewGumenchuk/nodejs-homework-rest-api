@@ -10,11 +10,6 @@ const getContactById = async contactId => {
   return data;
 };
 
-const removeContact = async contactId => {
-  const data = await Contact.findByIdAndRemove({ _id: contactId });
-  return data;
-};
-
 const addContact = async body => {
   const data = await Contact.create(body);
   return data;
@@ -29,10 +24,15 @@ const updateContact = async (contactId, body) => {
   return data;
 };
 
+const removeContact = async contactId => {
+  const data = await Contact.findByIdAndRemove({ _id: contactId });
+  return data;
+};
+
 module.exports = {
   listContacts,
   getContactById,
-  removeContact,
   addContact,
   updateContact,
+  removeContact,
 };
