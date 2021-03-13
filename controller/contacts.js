@@ -1,9 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const Contacts = require('../../model/index');
-const validate = require('../../services/validation');
+const Contacts = require('../model/contacts');
 
-router.get('/', async (_req, res, next) => {
+const listContacts= async (_req, res, next) => {
   try {
     const contacts = await Contacts.listContacts();
     return res.json({
@@ -17,9 +14,9 @@ router.get('/', async (_req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+};
 
-router.get('/:contactId', async (req, res, next) => {
+const getContactById = async (req, res, next) => {
   try {
     const contact = await Contacts.getContactById(req.params.contactId);
     if (contact) {
@@ -41,9 +38,9 @@ router.get('/:contactId', async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+};
 
-router.post('/', validate.createContact, async (req, res, next) => {
+const addContact = async (req, res, next) => {
   try {
     const contact = await Contacts.addContact(req.body);
     return res.status(201).json({
@@ -57,9 +54,9 @@ router.post('/', validate.createContact, async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+};
 
-router.delete('/:contactId', async (req, res, next) => {
+const removeContact = async (req, res, next) => {
   try {
     const contact = await Contacts.removeContact(req.params.contactId);
     if (contact) {
@@ -81,9 +78,9 @@ router.delete('/:contactId', async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+};
 
-router.patch('/:contactId', validate.updateContact, async (req, res, next) => {
+const updateContact = async (req, res, next) => {
   try {
     if (Object.keys(req.body).length === 0) {
       return res.status(400).json({
@@ -115,6 +112,12 @@ router.patch('/:contactId', validate.updateContact, async (req, res, next) => {
   } catch (e) {
     next(e);
   }
-});
+};
 
-module.exports = router
+module.exports = {
+  listContacts,
+  getContactById,
+  addContact,
+  removeContact,
+  updateContact,
+};
