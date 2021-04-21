@@ -152,7 +152,7 @@ const saveAvatarToStatic = async req => {
   }
   return avatarUrl;
 };
-
+ 
 const avatars = async (req, res, next) => {
   try {
     const id = String(req.user._id);
