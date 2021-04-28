@@ -1,5 +1,5 @@
 const fs = require('fs/promises');
-const contactsPath = path.join(__dirname, '/contacts.json');
+const contactsPath = path.join(_dirname, '/contacts.json');
 const path = require('path');
 const shortid = require('shortid');
 
